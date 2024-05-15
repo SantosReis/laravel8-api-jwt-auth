@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Todo;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -62,4 +63,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function todos()
+    {
+        return $this->hasMany(Todo::class, 'created_by', 'id');
+
+    }
+
 }
